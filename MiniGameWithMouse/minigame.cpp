@@ -52,6 +52,7 @@ void Draw()
 }
 
 
+
 void Timer(int value)
 {
 	for(vector<Circle>::iterator i=circ.begin(); i!=circ.end(); i++)
