@@ -47,6 +47,10 @@ void displayMe(void)
                glVertex2f(-1,i/200);
                glVertex2f(1,i/200);
         }
+        //glVertex2f(0.5, y3);
+        //glVertex2f(0.0, y4);
+        //glVertex2f(1.5, 0.0);
+        //glVertex2f(0.0,1.0);
     glEnd();
     strcpy(_title,_titleRes);
     glutSetWindowTitle(strcat(_title,itoa(_angle,_buff,10)));
