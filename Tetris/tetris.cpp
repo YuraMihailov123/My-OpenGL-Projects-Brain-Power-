@@ -101,6 +101,7 @@ void RemoveLine(){
                         
                         if(map[i][j]!=0){count++;                         
                         }
+                        
               }
               
               if(count==n){
