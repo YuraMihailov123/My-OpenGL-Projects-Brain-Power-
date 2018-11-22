@@ -42,6 +42,9 @@ public:
         void CollideSides();
         void HorFix(int _dir);
         void RandomizeCount();
+        void RotateShape();
+        void CopyShape();
+        void _Merge();
 };
 
 Shapes s;
@@ -52,6 +55,53 @@ int score=0;
 char buff[100];
 char name[100]="<Tetris> Score: ";
 char nameRes[100]="<Tetris> Score: ";
+int tempShape[3][3];
+
+/////////////////////////////////////////////////////////////////////
+void Shapes::RotateShape(){
+        this->CopyShape();
+        for(int i=0;i<3;i++){
+                for(int j=0;j<3;j++){
+                        this->a[i][j]=tempShape[j][i];
+                        cout << this->a[i][j]<<"=";
+                }
+                cout << endl;
+        } 
+        cout << endl;
+        this->_Merge();       
+}
+
+void Shapes::CopyShape(){
+        for(int i=0;i<3;i++){
+                for(int j=0;j<3;j++){
+                        tempShape[i][j]=this->a[i][j];
+                        cout << this->a[i][j]<<"+";
+                }
+                cout << endl;
+        }    
+        cout << endl;
+}
+
+void Shapes::_Merge(){
+        int x1=0,y1=0;
+        for(int i=s.y;i<s.y+3;i++){
+        
+        for(int j=s.x;j<s.x+3;j++){
+                //if(i>m-4 && j<3){
+                map[i][j]=0;
+                map[i][j]=this->a[x1][y1];
+                cout << y1<<"-";
+                //}
+                y1++;
+        }
+        y1=0;
+        cout << endl;
+        x1++;
+        cout << x1;
+        }
+        cout << endl;
+}
+////////////////////////////////////////////////////////////////////////
 void Shapes::RandomizeCount(){
         this->aCount = rand() % 3+1;
         switch(this->aCount){
@@ -252,7 +302,7 @@ void SKeyboard(int key, int x,int y)
                         break;
                 case GLUT_KEY_RIGHT:if(s.x+s.length<n /*checkforcollidewithshapes*/)s.dir=1;
                         break;     
-                case GLUT_KEY_UP: //dirX=0;dirY=1;
+                case GLUT_KEY_UP: s.RotateShape();
                         break;    
                 case GLUT_KEY_DOWN: //dirX=0;dirY=-1;
                         break;                           
@@ -264,7 +314,7 @@ void Timer(int){
         s.Drop();
         strcpy(name,nameRes);
         glutPostRedisplay();
-        glutTimerFunc(400,Timer,0);
+        glutTimerFunc(1000,Timer,0);
 }
  
 int main(int argc, char** argv)
@@ -290,7 +340,7 @@ int main(int argc, char** argv)
     glutCreateWindow("First Step");
     //Registration
     glutDisplayFunc(displayMe);
-    glutTimerFunc(400,Timer,0);
+    glutTimerFunc(1000,Timer,0);
     gluOrtho2D(0,10,0,20);
     glutSpecialFunc(SKeyboard);
     glutMainLoop();
