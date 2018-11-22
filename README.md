@@ -7,7 +7,7 @@
 ![rr](https://github.com/YuraMihailov123/OpenglGridWithRotate/blob/master/SnakeGame/snake.png)
 
 # Tetris
-* Tetris done by me personally. Check it out!
+* Tetris done by me personally(but rotation of shape doesn t work well :( ). Check it out!
 
 ## Preview
 
