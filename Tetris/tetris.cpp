@@ -223,6 +223,7 @@ void Shapes::Merge(){
      } 
      s.y = 18;
      s.x=0;
+     
     
 }
 
